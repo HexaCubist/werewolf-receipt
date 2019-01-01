@@ -153,15 +153,12 @@
       window.close();
     });
 
-    document.querySelector("#app").addEventListener('click', (event) => {
-      let target = event.target;
-      if (target.classList.contains('ext') && target.tagName == 'a') {
+    document.querySelectorAll("a.ext")
+      .forEach(input => input.addEventListener('click', (event) => {
         event.preventDefault();
         let link = event.target.href;
         require("electron").shell.openExternal(link);
-      }
-    });
+      }));
   }
-
   window.setTimeout(eventbinds, 400);
 </script>
