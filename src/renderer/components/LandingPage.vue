@@ -2,9 +2,9 @@
   <div id="wrapper">
     <div class="intro">
       <h1 class="page-title is-size-1 has-text-weight-bold">Werewolf Receipt Printer</h1>
-      <p>Welcome to the werewolf receipt printer! Choose how many people you have playing then customize to your liking. Additional player types sourced from <a href="https://en.wikipedia.org/wiki/Mafia_(party_game)" class="ext">Wikipedia</a> and random traits sourced from the print &amp; play version of <a href="https://robots.management/" class="ext">Inhuman Conditions</a></p>
+      <p>Welcome to the werewolf receipt printer! Choose how many people you have playing then customize to your liking. Additional player types sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Mafia_(party_game)" class="ext">Wikipedia</a> and random traits sourced from the print &amp; play version of <a target="_blank" href="https://robots.management/" class="ext">Inhuman Conditions</a></p>
       <br/>
-      You can read the rules for Werewolf at <a href="https://rulebook.io/" class="ext">Rulebook.io</a>. If you have ideas on how to improve this tool then visit the <a href="http://github.com/hexacubist/werewolf-receipt" class="ext">Github page</a> and get in touch! In the future this app may support more games as well as printing on traditional printers.
+      You can read the rules for one variation of Werewolf at <a target="_blank" href="https://www.playwerewolf.co/rules/" class="ext">playwerewolf.co</a>. If you have ideas on how to improve this tool then visit the <a target="_blank" href="http://github.com/hexacubist/werewolf-receipt" class="ext">Github page</a> and get in touch! In the future this app may support more games as well as printing on traditional printers.
       <br/>
       <div class="columns">
         <div class="step column">
