@@ -43,8 +43,18 @@ function villagercalc(players,optional_cards=[]) {
   // it also takes in the "optional" cards - this is used in the calculation where
   // optional cards replace this one.
   
-  // Number of villagers = players - werewolves
-  return players - werewolfcalc(players,optional_cards)
+  // Count optional cards on our team
+  let optional_cards_onteam = 0
+  for (var i = optional_cards.length - 1; i >= 0; i--) {
+    if (optional_cards[i].team == "V") {
+      console.log("Using optional card:")
+      optional_cards[i]
+      optional_cards_onteam++
+    }
+  }
+  
+  // Number of villagers = players - werewolves - optional_cards_onteam
+  return players - werewolfcalc(players,optional_cards) - optional_cards_onteam
 }
 
 exports.card_info = [
@@ -54,7 +64,8 @@ exports.card_info = [
     win_condition: "You win when werewolves outnumber villagers.",
     symbol: "W",
     calculate_cards: werewolfcalc,
-    optional: false
+    optional: false,
+    team: "W" // Denotes which "team" they are on for calculations. Can be any string
   },
   {
     name: "Villager",
@@ -62,7 +73,26 @@ exports.card_info = [
     win_condition: "You win when no werewolves remain.",
     symbol: "V",
     calculate_cards: villagercalc,
-    optional: false
+    optional: false,
+    team: "V" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
+    name: "Doctor",
+    help_text: "Protect one person from attack each night.",
+    win_condition: "You win when no werewolves remain.",
+    symbol: "D",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    team: "V" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
+    name: "Seer",
+    help_text: "Attempt to detect a werewolf each night.",
+    win_condition: "You win when no werewolves remain.",
+    symbol: "S",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    team: "V" // Denotes which "team" they are on for calculations. Can be any string
   }
 ]
 

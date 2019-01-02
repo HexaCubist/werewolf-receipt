@@ -64,7 +64,7 @@
           v-for="(item,index) in card_info"
           v-bind:player="index"
           v-bind:players="players"
-          @click.native="printcard(index,players)"
+          @click.native="printcard(index,players,print_real=true)"
           title="Click to print.."
           ></receipt>
         </div>
@@ -125,15 +125,24 @@
         let num_cards = this.card_info.length
         let num_players = this.players
         let selections_unshuffled = []
+        let optional_cards = []
+
+        // Loop over each card and check if it is an optional card
+        for (var i = this.card_info.length - 1; i >= 0; i--) {
+          let card = this.card_info[i]
+          if(card.optional) optional_cards.push(card)
+        }
 
         // Loop over each card and find the number of that type
         for (var i = this.card_info.length - 1; i >= 0; i--) {
-          let num_of_type = this.card_info[i].calculate_cards(num_players)
+          let num_of_type = this.card_info[i].calculate_cards(num_players, optional_cards)
           selections_unshuffled = selections_unshuffled.concat(Array(num_of_type).fill(i))
         }
         
         // Virtual shuffle and hand out to players
-        return shuffleArray(selections_unshuffled);
+        shuffleArray(selections_unshuffled)
+        console.log(selections_unshuffled)
+        return selections_unshuffled;
       }
     },
     methods: {
@@ -166,15 +175,12 @@
         // console.log(players)
         // console.log(from_selections)
         // console.log(print_real)
-        if (print_real) {
-          // Print for real, animate button
-          document.querySelector("#print-button").classList.add("is-loading","printing")
-        }
+        document.querySelector("#print-button").classList.add("is-loading","printing")
         let win = new remote.BrowserWindow({
           width: 800,
           height: 600,
           webPreferences: {webSecurity: false},
-          show: false
+          show: !print_real
         })
         win.loadURL(modalPath + `receipt/${card_ind_calc}/${players}`)
         win.on('closed', (e) => {
@@ -182,25 +188,27 @@
             let button = document.querySelector("#print-button")
             button.classList.remove("is-loading","printing")
         })
-        win.webContents.on('did-finish-load', ((data, win) => {
-          win.webContents.print({
-            silent: true,
-            deviceName: printer,
-            printBackground: true
-          }, ((data, win, printed) => {
-            console.log(printed)
-            if (printed) {
-              data.card_current += 1
-              if (data.card_current >= data.players) {
-                // We have printed all cards!
-                let button = document.querySelector("#print-button")
-                button.setAttribute("disabled", "1")
-                button.innerHTML = "All Cards Printed!"
-                document.querySelector("#all-cards-printed").classList.remove("is-invisible")
+        if (print_real) {
+          win.webContents.on('did-finish-load', ((data, win) => {
+            win.webContents.print({
+              silent: true,
+              deviceName: printer,
+              printBackground: true
+            }, ((data, win, printed) => {
+              console.log(printed)
+              if (printed) {
+                data.card_current += 1
+                if (data.card_current >= data.players) {
+                  // We have printed all cards!
+                  let button = document.querySelector("#print-button")
+                  button.setAttribute("disabled", "1")
+                  button.innerHTML = "All Cards Printed!"
+                  document.querySelector("#all-cards-printed").classList.remove("is-invisible")
 
+                }
               }
-            }
-            win.close()
+              win.close()
+            }).bind(this, data, win));
           }).bind(this, data, win));
           // close window after print order (or 2 seconds).
           setTimeout(
@@ -208,7 +216,9 @@
               if(!win.closed) win.destroy()
             }).bind(this,win),
             2000)
-        }).bind(this, data, win));
+        } else {
+          data.card_current += 1
+        }
       },
       customizeToggle: function() {
         console.log("Showing customizer")
