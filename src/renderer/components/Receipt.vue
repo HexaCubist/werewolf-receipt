@@ -62,10 +62,10 @@
     transform: rotate(180deg);
   }
 
-  .receipt:hover .underside {
+/*  .receipt:hover .underside {
     transform: rotate(0deg);
   }
-
+*/
   .overside {
     margin-bottom: 1.1cm;
   }
