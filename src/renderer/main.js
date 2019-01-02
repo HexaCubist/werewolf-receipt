@@ -22,10 +22,42 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
+
+// Get list of games in the /src/games folder and l
+var glob = require( 'glob' )
+  , path = require( 'path' )
+const settings = require('electron-settings');
+
+var games = []
+var normalizedPath = require("path").join(__dirname, "../games")
+
+require("fs").readdirSync(normalizedPath).forEach(function(file) {
+  console.log("Found game:")
+  console.log(file)
+  games.push( require("../games/" + file) )
+})
+
+if (!settings.has('game_ind')) {
+  // Game is not initialised, set to default (0).
+  settings.set('game_ind', 0)
+}
+
 /* eslint-disable no-new */
 var vm = new Vue({
   components: { App },
   router,
   store,
-  template: '<App/>'
+  template: '<App/>',
+  data: {
+    game_ind: settings.get('game_ind'),
+    games: games
+  },
+  computed: {
+    card_info: function() {
+      return this.$data.games[this.$data.game_ind].card_info
+    },
+    game_info: function() {
+      return this.$data.games[this.$data.game_ind].game_info
+    },
+  }
 }).$mount('#app')
