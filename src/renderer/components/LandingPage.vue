@@ -280,4 +280,34 @@
   .player-select input.input {
       width: 60px;
   }
+
+
+  .button-group {
+    font-size: 0;
+  }
+
+  .button-group button {
+    margin: 0
+  }
+
+  .button-group button:first-of-type {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .button-group button:last-of-type {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  button.customize-button {
+      background: rgba(255, 255, 255, 0.5);
+      color: white;
+      border: 0;
+  }
+
+  button.customize-button:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.4);
+  }
 </style>
