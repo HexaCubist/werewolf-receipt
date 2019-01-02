@@ -115,12 +115,11 @@
   }
 </style>
 <script>
-  var card_info = require('../../cards/CardInfo').card_info
   export default {
     props: ['player', 'players'],
     computed: {
       card: function(){
-        return card_info[ this.player ]
+        return this.$root.$data.card_info[ this.player ]
       }
     }
   }

@@ -1,8 +1,8 @@
 <template>
   <div id="wrapper">
     <div class="intro">
-      <h1 class="page-title is-size-1 has-text-weight-bold">Werewolf Receipt Printer</h1>
-      <p>Welcome to the werewolf receipt printer! Choose how many people you have playing then customize to your liking. Additional player types sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Mafia_(party_game)" class="ext">Wikipedia</a> and random traits sourced from the print &amp; play version of <a target="_blank" href="https://robots.management/" class="ext">Inhuman Conditions</a></p>
+      <h1 class="page-title is-size-1 has-text-weight-bold"><span class="edit" title="Click to edit...">{{game_info.name}}</span> Receipt Printer</h1>
+      <p>Welcome to the {{game_info.name}} receipt printer! Choose how many people you have playing then customize to your liking. Additional player types sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Mafia_(party_game)" class="ext">Wikipedia</a> and random traits sourced from the print &amp; play version of <a target="_blank" href="https://robots.management/" class="ext">Inhuman Conditions</a></p>
       <br/>
       You can read the rules for one variation of Werewolf at <a target="_blank" href="https://www.playwerewolf.co/rules/" class="ext">playwerewolf.co</a>. If you have ideas on how to improve this tool then visit the <a target="_blank" href="http://github.com/hexacubist/werewolf-receipt" class="ext">Github page</a> and get in touch! In the future this app may support more games as well as printing on traditional printers.
       <br/>
@@ -71,7 +71,6 @@
 
 <script>
   import { remote } from 'electron'
-  import { card_info } from '../../cards/CardInfo'
   const modalPath = process.env.NODE_ENV === 'development'
     ? 'http://localhost:9080/#/'
     : `file://${__dirname}/index.html#`
@@ -103,10 +102,12 @@
     name: 'landing-page',
     // components: { Receipt },
     data () {
+      console.log(this.$root)
       return {
         players: 7,
         card_current: 0,
-        card_info: card_info,
+        card_info: this.$root.card_info,
+        game_info: this.$root.game_info,
         printers: contents.getPrinters(),
         printer: getDefaultPrinter()
       }
@@ -123,8 +124,8 @@
         let selections_unshuffled = []
 
         // Loop over each card and find the number of that type
-        for (var i = card_info.length - 1; i >= 0; i--) {
-          let num_of_type = card_info[i].calculate_cards(num_players)
+        for (var i = this.card_info.length - 1; i >= 0; i--) {
+          let num_of_type = this.card_info[i].calculate_cards(num_players)
           selections_unshuffled = selections_unshuffled.concat(Array(num_of_type).fill(i))
         }
         
@@ -264,5 +265,20 @@
 
   .player-select input.input {
       width: 60px;
+  }
+
+  .intro .edit {
+      transition: 0.3s ease all;
+      text-decoration: underline;
+      color: #FFEB3B;
+      cursor: pointer;
+  }
+
+  a {
+      color: #FFEB3B;
+  }
+
+  a:hover {
+      color: #FFF9C4;
   }
 </style>

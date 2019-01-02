@@ -1,3 +1,7 @@
+// Card Information
+// Important information about the cards specific to this game is stored here.
+// This initialises the settings database from which the app will look at from now on.
+
 function werewolfcalc(players,optional_cards=[]) {
   // This function manages how many of this type of card is in the game at a time.
   // It accepts the number of players (total) as an integer, and outputs the number
@@ -61,3 +65,12 @@ exports.card_info = [
     optional: false
   }
 ]
+
+
+// Game Information
+// Important information about the game itself is stored here.
+// This initialises the settings database from which the app will look at from now on.
+
+exports.game_info = {
+  name: "Werewolf"
+}
