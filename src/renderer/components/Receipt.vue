@@ -3,7 +3,7 @@
       <div class="underside">
         <h2 class="is-size-2 has-text-weight-bold">Werewolf</h2>
         <p>A Game of social Deduction and subterfuge for {{players}} players</p>
-        <img src="/static/img/qrl.png" style="height: 2.5cm">
+        <img src="../assets/qrl.png" style="height: 2.5cm">
       </div>
       <div class="centerline">
         <hr><span class="hr-text">F O L D - H E R E</span>

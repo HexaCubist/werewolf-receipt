@@ -218,7 +218,7 @@
     height: 100vh;
     background: #05060c;
     overflow: auto;
-    background-image: url('/static/img/dayne-topkin-309496-unsplash.jpg');
+    background-image: url('../assets/dayne-topkin-309496-unsplash.jpg');
     box-shadow: inset 0 0 500px 10px black;
     background-size: cover;
     background-position: center;

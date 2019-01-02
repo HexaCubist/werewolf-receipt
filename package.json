@@ -1,7 +1,7 @@
 {
   "name": "werewolf-receipt",
   "version": "1.0.1",
-  "author": "",
+  "author": "HexaCubist",
   "description": "An instant print-and-play variation of Werewolf using a receipt printer",
   "license": null,
   "main": "./dist/electron/main.js",
