@@ -119,7 +119,7 @@
     props: ['player', 'players'],
     computed: {
       card: function(){
-        return this.$root.$data.card_info[ this.player ]
+        return this.$root.card_info[ this.player ]
       }
     }
   }
