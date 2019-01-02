@@ -36,16 +36,19 @@
         <div class="step column">
           <h1 class="is-size-1 has-text-weight-bold">Step 03</h1>
           <p>
-            Start Printing! Click the button below to print the <span v-if="card_current == 0">first</span><span v-else>next</span> card.
+            <span @click="customizeToggle()">Customize the cards</span> or Start Printing! Click the button below to print the <span v-if="card_current == 0">first</span><span v-else>next</span> card.
             <br/>
             So far, you have printed <strong>{{card_current}}</strong> out of <strong>{{players}}</strong> cards.
           </p>
           <br/>
-          <button
-            id="print-button"
-            class="button is-primary is-medium is-rounded"
-            @click="printcard( card_current,players,from_selections=true,print_real=true)"
-          >Print a card!</button>
+          <div class="button-group">
+            <button
+              id="print-button"
+              class="button is-primary is-medium is-rounded"
+              @click="printcard( card_current,players,from_selections=true,print_real=true)"
+            >Print a card!</button>
+            <button class="button customize-button is-medium is-rounded" @click="customizeToggle()">Customize</button>
+          </div>
           <div id="all-cards-printed" class="is-invisible">
             <br/>
             <p>
@@ -55,8 +58,8 @@
         </div>
       </div>
     </div>
-    <main>
-<!--         <div class="receiptlist">
+    <main class="hidden" id="customize">
+        <div class="receiptlist"">
           <receipt
           v-for="(item,index) in card_info"
           v-bind:player="index"
@@ -64,7 +67,7 @@
           @click.native="printcard(index,players)"
           title="Click to print.."
           ></receipt>
-        </div> -->
+        </div>
     </main>
   </div>
 </template>
@@ -72,6 +75,7 @@
 <script>
   import { remote } from 'electron'
   import { card_info } from '../../cards/CardInfo'
+
   const modalPath = process.env.NODE_ENV === 'development'
     ? 'http://localhost:9080/#/'
     : `file://${__dirname}/index.html#`
@@ -205,6 +209,13 @@
             }).bind(this,win),
             2000)
         }).bind(this, data, win));
+      },
+      customizeToggle: function() {
+        console.log("Showing customizer")
+
+        var customize = document.querySelector("#customize")
+
+        customize.classList.toggle("hidden")
       }
     },
 
@@ -248,6 +259,10 @@
     margin: auto;
   }
 
+  .hidden {
+    display: none;
+  }
+
   .intro {
     max-width: 700px;
     margin: auto;
@@ -264,5 +279,34 @@
 
   .player-select input.input {
       width: 60px;
+  }
+
+  .button-group {
+    font-size: 0;
+  }
+
+  .button-group button {
+    margin: 0
+  }
+
+  .button-group button:first-of-type {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .button-group button:last-of-type {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  button.customize-button {
+      background: rgba(255, 255, 255, 0.5);
+      color: white;
+      border: 0;
+  }
+
+  button.customize-button:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.4);
   }
 </style>
