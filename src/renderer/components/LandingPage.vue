@@ -71,6 +71,22 @@
                 v-model="item.enabled">
                 {{item.name}}
               </label>
+              <h3 class="is-size-3">Print Settings</h3>
+              <label class="checkbox">
+                <input type="checkbox" v-model="print.print_all">
+                Print all at once (prints single sided default paper)
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" v-model="print.fold">
+                Create foldable cards
+              </label>
+              <br/>
+              <div class="field">
+                <label class="label">Card reverse image (<a target="_blank" href="https://www.google.co.nz/search?q=base64+image+encode" class="ext">Base64</a>)</label>
+                <div class="control">
+                  <input class="input" v-model="print.reverse_image">
+                </div>
+              </div>
             </div>
             <div class="column">
               <h3 class="is-size-3">Edit Cards</h3>
@@ -178,9 +194,10 @@
         card_current: 0,
         card_info: this.$root.card_info,
         game_info: this.$root.game_info,
+        print: this.$root.print,
         printers: contents.getPrinters(),
         printer: getDefaultPrinter(),
-        card_select_edit: 0
+        card_select_edit: 0,
       }
     },
     computed: {
@@ -260,7 +277,7 @@
           win.webContents.on('did-finish-load', ((data, win) => {
             win.webContents.print({
               silent: true,
-              deviceName: printer,
+              deviceName: data.printers[data.printer].name,
               printBackground: true
             }, ((data, win, printed) => {
               console.log(printed)

@@ -1,12 +1,14 @@
 <template>
     <div class="receipt" style="width: 56mm;height:auto">
+      <div v-if="print.fold">
       <div class="underside">
         <h2 class="is-size-2 has-text-weight-bold">Werewolf</h2>
         <p>A Game of social Deduction and subterfuge for {{players}} players</p>
-        <img src="../assets/qrl.png" style="height: 2.5cm">
+        <img :src="print.reverse_image" style="height: 2.5cm">
       </div>
       <div class="centerline">
         <hr><span class="hr-text">F O L D - H E R E</span>
+      </div>
       </div>
       <div class="overside">
         <h3 class="has-text-weight-bold">You are {{card.name | indefinite}}</h3>
@@ -118,6 +120,11 @@
   var a = require('indefinite');
   export default {
     props: ['player', 'players'],
+    data () {
+      return {
+      print: this.$root.print,
+      }
+    },
     computed: {
       card: function(){
         return this.$root.card_info[ this.player ]
