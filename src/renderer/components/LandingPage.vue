@@ -58,10 +58,77 @@
         </div>
       </div>
     </div>
-    <main class="hidden" id="customize">
-        <div class="receiptlist"">
+    <main class="" id="customize">
+        <div class="options container">
+          <div class="columns">
+            <div class="column border-right" id="optionals">
+              <h3 class="is-size-3">Enabled Cards</h3>
+              <label class="checkbox"
+              v-for="(item,index) in card_info"
+              >
+                <input type="checkbox"
+                :disabled="!item.optional"
+                v-model="item.enabled">
+                {{item.name}}
+              </label>
+            </div>
+            <div class="column">
+              <h3 class="is-size-3">Edit Cards</h3>
+              <div class="card-select">
+                <div v-for="(item,index) in card_info">
+                  <input type="radio" :value="index" :id="'card-select-' + index" v-model="card_select_edit">
+                  <label :for="'card-select-' + index" class="card-item">
+                    <span>{{item.symbol}}</span>
+                    {{item.name}}
+                  </label>
+                </div>
+              </div>
+              
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label">Card Name</label>
+                <div class="control">
+                  <input class="input" v-model="card_info[card_select_edit].name">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Help Text</label>
+                <div class="control">
+                  <input class="input" v-model="card_info[card_select_edit].help_text">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Win Condition</label>
+                <div class="control">
+                  <input class="input" v-model="card_info[card_select_edit].win_condition">
+                </div>
+              </div>
+              <div class="columns">
+                <div class="field column">
+                  <label class="label">Symbol</label>
+                  <div class="control">
+                    <input class="input" pattern="\w" v-model="card_info[card_select_edit].symbol">
+                  </div>
+                </div>
+                <div class="field column">
+                  <label class="label">Team</label>
+                  <div class="control">
+                    <input class="input" pattern="\w" v-model="card_info[card_select_edit].team">
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label class="enabled">Optional</label>
+                <input type="checkbox" pattern="\w" v-model="card_info[card_select_edit].optional">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="receiptlist">
           <receipt
           v-for="(item,index) in card_info"
+          v-if="item.enabled==true"
           v-bind:player="index"
           v-bind:players="players"
           @click.native="printcard(index,players,print_real=true)"
@@ -112,7 +179,8 @@
         card_info: this.$root.card_info,
         game_info: this.$root.game_info,
         printers: contents.getPrinters(),
-        printer: getDefaultPrinter()
+        printer: getDefaultPrinter(),
+        card_select_edit: 0
       }
     },
     computed: {
@@ -226,6 +294,18 @@
         var customize = document.querySelector("#customize")
 
         customize.classList.toggle("hidden")
+      },
+      addCard: function(card_ind) {
+        this.card_list.push({
+          name: "",
+          help_text: "",
+          win_condition: "",
+          symbol: "",
+          calculate_cards: () => 0,
+          optional: true,
+          enabled: true,
+          team: "" // Denotes which "team" they are on for calculations. Can be any string
+        })
       }
     },
 
@@ -311,13 +391,59 @@
   }
   
   button.customize-button {
-      background: rgba(255, 255, 255, 0.5);
-      color: white;
-      border: 0;
+    background: rgba(255, 255, 255, 0.5);
+    color: white;
+    border: 0;
   }
 
   button.customize-button:hover {
-      color: white;
-      background: rgba(255, 255, 255, 0.4);
+    color: white;
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .options {
+    background: white;
+    color: black;
+    padding: 2em;
+    border-radius: 2px;
+  }
+
+  .options .column.border-right {
+    border-right: 1px solid grey;
+  }
+
+  #optionals .checkbox {
+    display: block;
+  }
+
+  .card-select .card-item {
+    display: block;
+    color: black;
+    /* background: rgba(0, 0, 0, 0.05); */
+    padding: .5em .75em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 0;
+    cursor: pointer;
+  }
+
+  .card-select {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .card-item span {
+    font-family: monospace;
+    font-weight: bold;
+    border-right: 1px solid;
+    padding-right: 6px;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .card-select input {
+    display: none;
+  }
+
+  input:checked ~ label {
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.04);
   }
 </style>

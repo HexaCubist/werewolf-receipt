@@ -65,6 +65,7 @@ exports.card_info = [
     symbol: "W",
     calculate_cards: werewolfcalc,
     optional: false,
+    enabled: true,
     team: "W" // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -74,6 +75,7 @@ exports.card_info = [
     symbol: "V",
     calculate_cards: villagercalc,
     optional: false,
+    enabled: true,
     team: "V" // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -83,6 +85,7 @@ exports.card_info = [
     symbol: "D",
     calculate_cards: (players,optional_cards=[]) => {return 1},
     optional: true,
+    enabled: true,
     team: "V" // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -92,6 +95,7 @@ exports.card_info = [
     symbol: "S",
     calculate_cards: (players,optional_cards=[]) => {return 1},
     optional: true,
+    enabled: true,
     team: "V" // Denotes which "team" they are on for calculations. Can be any string
   }
 ]
