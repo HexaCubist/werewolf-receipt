@@ -212,10 +212,10 @@
         let selections_unshuffled = []
         let optional_cards = []
 
-        // Loop over each card and check if it is an optional card
+        // Loop over each card and check if it is an optional card and enabled
         for (var i = this.card_info.length - 1; i >= 0; i--) {
           let card = this.card_info[i]
-          if(card.optional) optional_cards.push(card)
+          if(card.optional && card.enabled) optional_cards.push(card)
         }
 
         // Loop over each card and find the number of that type
