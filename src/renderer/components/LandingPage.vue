@@ -40,6 +40,10 @@
             <br/>
             So far, you have printed <strong>{{card_current}}</strong> out of <strong>{{players}}</strong> cards.
           </p>
+          <p id="cardnav">
+            <a @click="cardadd(-1)">Previous Card</a> |
+            <a @click="cardadd(1)">Next Card</a>
+          </p>
           <br/>
           <div class="button-group">
             <button
@@ -259,6 +263,14 @@
       }
     },
     methods: {
+      cardadd (add) {
+        let current = this.$data.card_current
+        let players = this.$data.players
+        if (current + add == players + 1) return
+        if (current + add == -1) return
+        this.$data.card_current += add
+        return
+      },
       open (link) {
         this.$electron.shell.openExternal(link)
       },
@@ -499,5 +511,9 @@
   input:checked ~ label {
     font-weight: bold;
     background: rgba(0, 0, 0, 0.04);
+  }
+
+  #cardnav {
+    user-select: none
   }
 </style>
