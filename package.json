@@ -63,6 +63,7 @@
     "indefinite": "^2.2.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
+    "vue-popover": "^1.6.2",
     "vue-router": "^3.0.1",
     "vue-toasted": "^1.1.26",
     "vuex": "^3.0.1",

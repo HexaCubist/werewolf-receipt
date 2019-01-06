@@ -15,7 +15,7 @@ export default new Router({
       redirect: '/'
     },
     {
-      path: '/receipt/:player/:players',
+      path: '/receipt/',
       component: require('@/components/Receipt').default,
       props: true
     }

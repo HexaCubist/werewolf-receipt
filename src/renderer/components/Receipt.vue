@@ -117,23 +117,82 @@
   }
 </style>
 <script>
+  // var ipcRenderer = require('electron').ipcRenderer
+  // ipcRenderer.on('receipt-data', function (event,data) {
+  //     console.log(data)
+  //     data_load = data
+  // });
+
   var a = require('indefinite');
+
   export default {
-    props: ['player', 'players'],
+    props: {
+      'prop_players': {
+        type: Number,
+        default: 0,
+        required: false
+      },
+      'prop_card': {
+        type: Object,
+        default: function() {
+          return {
+            name: "Invalid Card",
+            help_text: "There has been an error and the card was not sent correctly.",
+            win_condition: "You cannot win.",
+            symbol: "X",
+            calculate_cards: () => 0,
+            optional: true,
+            enabled: true,
+            team: "X" // Denotes which "team" they are on for calculations. Can be any string
+          }
+        },
+        required: false
+      },
+      'prop_print': {
+        type: Object,
+        default: function() {
+          return {
+            print_all: false,
+            fold: true,
+            print_test: false,
+            dialog: false,
+            reverse_image: ""
+          }
+        },
+        required: false
+      }
+    },
     data () {
       return {
-      print: this.$root.print,
+        data_players: null,
+        data_card: null,
+        data_print: null,
       }
     },
     computed: {
-      card: function(){
-        return this.$root.card_info[ this.player ]
-      }
+      players () {
+        return this.data_players ? this.data_players : this.prop_players
+      },
+      card () {
+        return this.data_card ? this.data_card : this.prop_card
+      },
+      print () {
+        return this.data_print ? this.data_print : this.prop_print
+      },
     },
     filters: {
       indefinite: function(value) {
         return a(value)
       }
+    },
+    mounted () {
+      this.$electron.ipcRenderer.on('receipt-data', function (event,data) {
+        console.log(data)
+        console.log(this)
+        this.data_players = data.players
+        this.data_card = data.card
+        this.data_print = data.print
+      }.bind(this));
     }
   }
 </script>

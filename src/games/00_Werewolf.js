@@ -106,5 +106,7 @@ exports.card_info = [
 // This initialises the settings database from which the app will look at from now on.
 
 exports.game_info = {
-  name: "Werewolf"
+  name: "Werewolf",
+  min_players: 5,
+  max_players: 75,
 }
