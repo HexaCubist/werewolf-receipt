@@ -7,7 +7,7 @@
             <div slot="content">
                 <ul>
                     <li v-for="(game, index) in games"><a @click="set_game_ind(index)">
-                      {{index}} {{game.game_info.name}}
+                      {{game.game_info.name}}
                     </a></li>
                 </ul>
             </div>
@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-    <main class="" id="customize">
+    <main class="hidden" id="customize">
         <div class="options container">
           <div class="columns">
             <div class="column border-right" id="optionals">
