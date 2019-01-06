@@ -13,6 +13,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faMinus, faExpand, faTimes)
 
+import Toasted from 'vue-toasted';
+ 
+Vue.use(Toasted)
+
 import Receipt from './components/Receipt'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

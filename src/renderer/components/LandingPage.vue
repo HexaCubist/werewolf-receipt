@@ -183,6 +183,34 @@
       return array
   }
 
+  // Print status monitoring
+  // 0 = ready
+  // 1 = printing
+  var print_status = 0
+
+  // Toast
+  function printError(data, toasted) {
+    toasted.show('Print Seems to have failed', {
+      theme: 'outline',
+      position: 'bottom-right',
+      action: [
+      {
+        text: 'Next Card',
+        onClick: (e, toastObject) => {
+          toastObject.goAway(0)
+          data.card_current ++;
+        }
+      },
+      {
+        text: 'Retry',
+        onClick: (e, toastObject) => {
+          toastObject.goAway(0)
+        }
+      }
+      ]
+    })
+  }
+
 
   export default {
     name: 'landing-page',
@@ -274,6 +302,7 @@
             button.classList.remove("is-loading","printing")
         })
         if (print_real) {
+          print_status = 1
           win.webContents.on('did-finish-load', ((data, win) => {
             win.webContents.print({
               silent: true,
@@ -291,15 +320,23 @@
                   document.querySelector("#all-cards-printed").classList.remove("is-invisible")
 
                 }
+              } else {
+                if(print_status == 1) printError(data, this.$toasted)
               }
+              print_status = 0
               win.close()
             }).bind(this, data, win));
           }).bind(this, data, win));
           // close window after print order (or 2 seconds).
           setTimeout(
             ((win) => {
-              if(!win.closed) win.destroy()
-            }).bind(this,win),
+              if(print_status == 1){
+                printError(data, this.$toasted)
+                console.log(win)
+                win.destroy()
+                print_status = 0
+              }
+            }).bind(this,win,data),
             2000)
         } else {
           data.card_current += 1
