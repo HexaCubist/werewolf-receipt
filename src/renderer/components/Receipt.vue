@@ -9,7 +9,7 @@
         <hr><span class="hr-text">F O L D - H E R E</span>
       </div>
       <div class="overside">
-        <h3 class="has-text-weight-bold">You are a {{card.name}}</h3>
+        <h3 class="has-text-weight-bold">You are {{card.name | indefinite}}</h3>
         <p class="symbol">{{card.symbol}}</p>
         <p>{{card.help_text}} {{card.win_condition}}</p>
       </div>
@@ -115,11 +115,17 @@
   }
 </style>
 <script>
+  var a = require('indefinite');
   export default {
     props: ['player', 'players'],
     computed: {
       card: function(){
         return this.$root.card_info[ this.player ]
+      }
+    },
+    filters: {
+      indefinite: function(value) {
+        return a(value)
       }
     }
   }
