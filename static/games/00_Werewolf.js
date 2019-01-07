@@ -183,7 +183,7 @@ exports.card_info = [
     help_text: "Secretly know the identity of another Mason",
     win_condition: "You win when no werewolves remain.",
     symbol: "△",
-    calculate_cards: (players,optional_cards=[]) => {return 1},
+    calculate_cards: (players,optional_cards=[]) => {return 2},
     optional: true,
     enabled: false,
     team: "V" // Denotes which "team" they are on for calculations. Can be any string
