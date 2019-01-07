@@ -175,6 +175,7 @@
         <div class="receiptlist">
           <receipt
           v-for="(item,index) in card_info"
+          :key="`receipt-card-${index}`"
           v-if="item.enabled==true"
           v-bind:prop_game_settings="game_settings"
           v-bind:prop_card="getcard(card_info,index)"

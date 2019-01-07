@@ -33,12 +33,12 @@ var glob = require( 'glob' )
 const settings = require('electron-settings');
 
 var games = []
-var normalizedPath = require("path").join(__dirname, "../games")
+var normalizedPath = path.join(__static, "/games")
 
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
   console.log("Found game:")
   console.log(file)
-  games.push( require("../games/" + file) )
+  games.push( require("../../static/games/" + file) )
 })
 
 if (!settings.has('game_ind')) {
