@@ -3,3 +3,4 @@ title: Werewolf Receipt
 description: An instant print-and-play variation of Werewolf using a receipt printer
 show_downloads: true
 google_analytics: UA-102610886-8
+baseurl: ''
