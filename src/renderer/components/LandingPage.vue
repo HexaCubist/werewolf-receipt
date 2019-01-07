@@ -111,6 +111,13 @@
                   <input class="input" v-model="print.reverse_image">
                 </div>
               </div>
+              <div class="field player-select">
+                <label class="label">Chance for random "trait"</label>
+                <div class="control is-clearfix">
+                  <input class="slider is-fullwidth" step="1" min="0" max="100" type="range" v-model="game_settings.chance_trait">
+                  <input type="number" min="0" max="100" class="input" v-model="game_settings.chance_trait">
+                </div>
+              </div>
             </div>
             <div class="column">
               <h3 class="is-size-3">Edit Cards</h3>
@@ -169,9 +176,10 @@
           <receipt
           v-for="(item,index) in card_info"
           v-if="item.enabled==true"
-          v-bind:prop_players="game_settings.players"
+          v-bind:prop_game_settings="game_settings"
           v-bind:prop_card="getcard(card_info,index)"
           v-bind:prop_print="print"
+          v-bind:prop_game_info="game_info"
           @click.native="printcard(index,game_settings.players,print_real=!print.print_test)"
           title="Click to print.."
           ></receipt>
@@ -256,7 +264,8 @@
         },
         game_settings: {
           game_ind: settings.get('game_ind'),
-          players: 7
+          players: 7,
+          chance_trait: 10
         },
         printers: contents.getPrinters(),
         printer: getDefaultPrinter(),
@@ -326,8 +335,9 @@
         win.webContents.on('did-finish-load', ((data, win) => {
           win.webContents.send('receipt-data', {
             card: this.getcard(this.card_info,card_ind_calc),
-            players: this.game_settings.players,
-            print: this.print
+            game_settings: this.game_settings,
+            print: this.print,
+            game_info: this.game_info
           });
         }).bind(this, data, win))
         if (print_real) {

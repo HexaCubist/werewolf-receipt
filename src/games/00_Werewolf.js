@@ -109,4 +109,23 @@ exports.game_info = {
   name: "Werewolf",
   min_players: 5,
   max_players: 75,
+  optional_traits: [  // Adapted from Inhuman Conditions
+  	"Trusting: You may not attack the person two to your left",
+  	"Trusting: You may not attack the person to your left",
+  	"Trusting: You may not attack the person to your right",
+  	"Instigator: You may not defend the person two to your left",
+  	"Instigator: You may not defend the person to your left",
+  	"Instigator: You may not defend the person to your right",
+  	"Restless: You must shift about uneasily as the werewolves come out at night",
+  	"Village Idiot: You must always vote to eliminate a nominated player",
+  	"Neutral: You may not express opinions, only observable facts",
+  	"Royal: You may only speak about youself in the third person",
+  	"Superior: You see yourself as superior to all others.",
+  	"Pessimist: You may not describe anything getting better than it is at this moment",
+  	"Optimist: You may not describe anything getting worse than it is at this moment",
+  	"Recluse: You must refuse to describe what you did in the past",
+  	"Extrovert: Treat all votes as a popularity competition",
+  	"Maternal: Mother everybody. Even the werewolves.",
+  	"Maternal: Defend anyone younger than you."
+  ]
 }

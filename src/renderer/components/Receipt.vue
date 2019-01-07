@@ -2,8 +2,8 @@
     <div class="receipt" style="width: 56mm;height:auto">
       <div v-if="print.fold">
       <div class="underside">
-        <h2 class="is-size-2 has-text-weight-bold">Werewolf</h2>
-        <p>A Game of social Deduction and subterfuge for {{players}} players</p>
+        <h2 class="is-size-2 has-text-weight-bold">{{game_info.name}}</h2>
+        <p>A Game of social Deduction and subterfuge for {{game_settings.players}} players</p>
         <img :src="print.reverse_image" style="height: 2.5cm">
       </div>
       <div class="centerline">
@@ -14,6 +14,10 @@
         <h3 class="has-text-weight-bold">You are {{card.name | indefinite}}</h3>
         <p class="symbol">{{card.symbol}}</p>
         <p>{{card.help_text}} {{card.win_condition}}</p>
+        <div class="trait" v-if="trait">
+          <br/>
+          <p>{{trait}}</p>
+        </div>
       </div>
     </div>
 </template>
@@ -57,7 +61,7 @@
   }
 
   .underside, .overside {
-    height: calc((13cm - 3rem + 2px) / 2);
+    height: calc((18cm - 3rem + 2px) / 2);
   }
 
   .underside {
@@ -127,7 +131,7 @@
 
   export default {
     props: {
-      'prop_players': {
+      'prop_game_settings': {
         type: Number,
         default: 0,
         required: false
@@ -156,7 +160,15 @@
             fold: true,
             print_test: false,
             dialog: false,
-            reverse_image: ""
+            reverse_image: "",
+          }
+        },
+        required: false
+      },
+      'prop_game_info': {
+        type: Object,
+        default: function() {
+          return {
           }
         },
         required: false
@@ -164,14 +176,15 @@
     },
     data () {
       return {
-        data_players: null,
+        data_game_settings: null,
         data_card: null,
         data_print: null,
+        data_game_info: null
       }
     },
-    computed: {
-      players () {
-        return this.data_players ? this.data_players : this.prop_players
+    computed: { // Default to properties but use data if given
+      game_settings () {
+        return this.data_game_settings ? this.data_game_settings : this.prop_game_settings
       },
       card () {
         return this.data_card ? this.data_card : this.prop_card
@@ -179,6 +192,17 @@
       print () {
         return this.data_print ? this.data_print : this.prop_print
       },
+      game_info () {
+        return this.data_game_info ? this.data_game_info : this.prop_game_info
+      },
+      trait () {
+        let traits = this.game_info.optional_traits
+        if(Math.random() < this.game_settings.chance_trait/100) {
+          return traits[Math.floor(Math.random()*traits.length)];
+        } else {
+          return ""
+        }
+      }
     },
     filters: {
       indefinite: function(value) {
@@ -189,9 +213,10 @@
       this.$electron.ipcRenderer.on('receipt-data', function (event,data) {
         console.log(data)
         console.log(this)
-        this.data_players = data.players
+        this.data_game_settings = data.game_settings
         this.data_card = data.card
         this.data_print = data.print
+        this.data_game_info = data.game_info
       }.bind(this));
     }
   }
