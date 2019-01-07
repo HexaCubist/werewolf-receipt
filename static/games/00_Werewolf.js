@@ -69,6 +69,16 @@ exports.card_info = [
     team: "W" // Denotes which "team" they are on for calculations. Can be any string
   },
   {
+    name: "Teenage Werewolf",
+    help_text: "Act as a normal werewolf. You must say 'Werewolf' once per day.",
+    win_condition: "You win when werewolves outnumber villagers.",
+    symbol: "T W",
+    calculate_cards: werewolfcalc,
+    optional: false,
+    enabled: true,
+    team: "W" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
     name: "Villager",
     help_text: "Find and vote out all werewolves.",
     win_condition: "You win when no werewolves remain.",
@@ -97,7 +107,87 @@ exports.card_info = [
     optional: true,
     enabled: true,
     team: "V" // Denotes which "team" they are on for calculations. Can be any string
-  }
+  },
+  {
+    name: "Witness",
+    help_text: "Learn who the mafia are during the first night.",
+    win_condition: "You win when no werewolves remain.",
+    symbol: "👁",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    enabled: false,
+    team: "V" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
+    name: "Little Girl",
+    help_text: "Secretly peek as werewolves pick.",
+    win_condition: "You win when no werewolves remain.",
+    symbol: "👧",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    enabled: false,
+    team: "V" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
+    name: "Veteran",
+    help_text: "Choose a person to die each night up to three times.",
+    win_condition: "You win when no werewolves remain.",
+    symbol: "🎖",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    enabled: false,
+    team: "V" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
+    name: "Alpha Wolf",
+    help_text: "You look innocent to seers.",
+    win_condition: "You win when werewolves outnumber villagers.",
+    symbol: "!",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    enabled: false,
+    team: "W" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
+    name: "Miller",
+    help_text: "You look guilty to seers.",
+    win_condition: "You win when no werewolves remain.",
+    symbol: "M",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    enabled: false,
+    team: "V" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
+    name: "Traitor",
+    help_text: "Act and take turns as a villager. Do not wake at night.",
+    win_condition: "You win when werewolves outnumber villagers.",
+    symbol: "T",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    enabled: false,
+    team: "W" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
+    name: "Thief",
+    help_text: "On the first night, swap cards.",
+    win_condition: "You win when no werewolves remain.",
+    symbol: "⇆",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    enabled: false,
+    team: "V" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
+    name: "Mason",
+    help_text: "Secretly know the identity of another Mason",
+    win_condition: "You win when no werewolves remain.",
+    symbol: "△",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    enabled: false,
+    team: "V" // Denotes which "team" they are on for calculations. Can be any string
+  },
 ]
 
 
@@ -110,22 +200,22 @@ exports.game_info = {
   min_players: 5,
   max_players: 75,
   optional_traits: [  // Adapted from Inhuman Conditions
-  	"Trusting: You may not attack the person two to your left",
-  	"Trusting: You may not attack the person to your left",
-  	"Trusting: You may not attack the person to your right",
-  	"Instigator: You may not defend the person two to your left",
-  	"Instigator: You may not defend the person to your left",
-  	"Instigator: You may not defend the person to your right",
-  	"Restless: You must shift about uneasily as the werewolves come out at night",
-  	"Village Idiot: You must always vote to eliminate a nominated player",
-  	"Neutral: You may not express opinions, only observable facts",
-  	"Royal: You may only speak about youself in the third person",
-  	"Superior: You see yourself as superior to all others.",
-  	"Pessimist: You may not describe anything getting better than it is at this moment",
-  	"Optimist: You may not describe anything getting worse than it is at this moment",
-  	"Recluse: You must refuse to describe what you did in the past",
-  	"Extrovert: Treat all votes as a popularity competition",
-  	"Maternal: Mother everybody. Even the werewolves.",
-  	"Maternal: Defend anyone younger than you."
+    "Trusting: You may not attack the person two to your left",
+    "Trusting: You may not attack the person to your left",
+    "Trusting: You may not attack the person to your right",
+    "Instigator: You may not defend the person two to your left",
+    "Instigator: You may not defend the person to your left",
+    "Instigator: You may not defend the person to your right",
+    "Restless: You must shift about uneasily as the werewolves come out at night",
+    "Village Idiot: You must always vote to eliminate a nominated player",
+    "Neutral: You may not express opinions, only observable facts",
+    "Royal: You may only speak about youself in the third person",
+    "Superior: You see yourself as superior to all others.",
+    "Pessimist: You may not describe anything getting better than it is at this moment",
+    "Optimist: You may not describe anything getting worse than it is at this moment",
+    "Recluse: You must refuse to describe what you did in the past",
+    "Extrovert: Treat all votes as a popularity competition",
+    "Maternal: Mother everybody. Even the werewolves.",
+    "Maternal: Defend anyone younger than you."
   ]
 }
