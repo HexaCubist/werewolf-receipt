@@ -44,7 +44,8 @@
 
   .symbol {
     font-family: 'Fredericka the Great';
-    font-size: 2cm
+    font-size: 2cm;
+    /*filter: grayscale() brightness(0.8) contrast(4);*/
   }
 
   .receipt hr {
@@ -132,8 +133,11 @@
   export default {
     props: {
       'prop_game_settings': {
-        type: Number,
-        default: 0,
+        type: Object,
+        default: function() {
+          return {
+          }
+        },
         required: false
       },
       'prop_card': {

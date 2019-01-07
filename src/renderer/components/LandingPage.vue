@@ -79,13 +79,14 @@
           <div class="columns">
             <div class="column border-right" id="optionals">
               <h3 class="is-size-3">Enabled Cards</h3>
+              <p>Note: Be careful not to select more cards than people!</p>
               <label class="checkbox"
               v-for="(item,index) in card_info"
               >
                 <input type="checkbox"
                 :disabled="!item.optional"
                 v-model="item.enabled">
-                {{item.name}}
+                {{item.name}} ({{cards_in_play(index)}})
               </label>
               <h3 class="is-size-3">Print Settings</h3>
               <label class="checkbox">
@@ -181,7 +182,7 @@
           v-bind:prop_card="getcard(card_info,index)"
           v-bind:prop_print="print"
           v-bind:prop_game_info="game_info"
-          @click.native="printcard(index,game_settings.players,print_real=!print.print_test)"
+          @click.native="printcard(index,game_settings.players,print_real=false)"
           title="Click to print.."
           ></receipt>
         </div>
@@ -274,6 +275,13 @@
       }
     },
     methods: {
+      cards_in_play(ind) {
+        let count = 0
+        for (var i = this.card_selections.length - 1; i >= 0; i--) {
+          if (this.card_selections[i] == ind) count++
+        }
+        return count
+      },
       set_game_ind(ind) {
         console.log(ind)
         this.game_settings.game_ind = parseInt(ind)
@@ -334,6 +342,7 @@
             button.classList.remove("is-loading","printing")
         })
         win.webContents.on('did-finish-load', ((data, win) => {
+          console.log(card_ind_calc)
           win.webContents.send('receipt-data', {
             card: this.getcard(this.card_info,card_ind_calc),
             game_settings: this.game_settings,
@@ -486,6 +495,7 @@
 
   .receiptlist {
     display: flex;
+    flex-wrap: wrap;
     max-width: 900px;
     margin: auto;
   }
@@ -547,6 +557,10 @@
     color: black;
     padding: 2em;
     border-radius: 2px;
+  }
+
+  .options p {
+    color: black
   }
 
   .options .column.border-right {
