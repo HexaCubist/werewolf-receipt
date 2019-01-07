@@ -5,7 +5,7 @@
 Werewolf Receipt is a quick tool for Windows (more platforms coming soon) which allows anyone with a receipt printer to automatically randomly generate, assign, and print the cards to the popular party game Werewolf. A number of optional cards and rules are included.
 
 
-[![Demo of Werewolf Receipt](https://github.com/HexaCubist/werewolf-receipt/blob/master/docs/demo.gif)](https://streamable.com/wmi8c)
+[![Demo of Werewolf Receipt](docs/demo.gif)](https://streamable.com/wmi8c)
 
 ## Setup
 
