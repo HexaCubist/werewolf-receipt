@@ -128,37 +128,38 @@
     }
   }
 
-  function eventbinds() {
-      // Retrieve remote BrowserWindow
+  function eventbinds () {
+    // Retrieve remote BrowserWindow
     const {BrowserWindow} = require('electron').remote
     // Minimize task
-    document.getElementById("min-btn").addEventListener("click", (e) => {
-      var window = BrowserWindow.getFocusedWindow();
-      window.minimize();
-    });
+    document.getElementById('min-btn').addEventListener('click', (e) => {
+      var window = BrowserWindow.getFocusedWindow()
+      window.minimize()
+    })
 
     // Maximize window
-    document.getElementById("max-btn").addEventListener("click", (e) => {
-      var window = BrowserWindow.getFocusedWindow();
-      if(window.isMaximized()){
-        window.unmaximize();
-      }else{
-        window.maximize();
+    document.getElementById('max-btn').addEventListener('click', (e) => {
+      var window = BrowserWindow.getFocusedWindow()
+      if (window.isMaximized()) {
+        window.unmaximize()
+      } else {
+        window.maximize()
       }
-    });
+    })
 
     // Close app
-    document.getElementById("close-btn").addEventListener("click", (e) => {
-      var window = BrowserWindow.getFocusedWindow();
-      window.close();
-    });
+    document.getElementById('close-btn').addEventListener('click', (e) => {
+      var window = BrowserWindow.getFocusedWindow()
+      window.close()
+    })
 
-    document.querySelectorAll("a.ext")
+    document.querySelectorAll('a.ext')
       .forEach(input => input.addEventListener('click', (event) => {
-        event.preventDefault();
-        let link = event.target.href;
-        require("electron").shell.openExternal(link);
-      }));
+        event.preventDefault()
+        let link = event.target.href
+        require('electron').shell.openExternal(link)
+      }))
   }
-  window.setTimeout(eventbinds, 400);
+  
+  window.setTimeout(eventbinds, 400)
 </script>

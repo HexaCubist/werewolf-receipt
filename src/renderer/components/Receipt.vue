@@ -128,13 +128,13 @@
   //     data_load = data
   // });
 
-  var a = require('indefinite');
+  var a = require('indefinite')
 
-  export default {
+export default {
     props: {
       'prop_game_settings': {
         type: Object,
-        default: function() {
+        default: function () {
           return {
           }
         },
@@ -142,36 +142,36 @@
       },
       'prop_card': {
         type: Object,
-        default: function() {
+        default: function () {
           return {
-            name: "Invalid Card",
-            help_text: "There has been an error and the card was not sent correctly.",
-            win_condition: "You cannot win.",
-            symbol: "X",
+            name: 'Invalid Card',
+            help_text: 'There has been an error and the card was not sent correctly.',
+            win_condition: 'You cannot win.',
+            symbol: 'X',
             calculate_cards: () => 0,
             optional: true,
             enabled: true,
-            team: "X" // Denotes which "team" they are on for calculations. Can be any string
+            team: 'X' // Denotes which "team" they are on for calculations. Can be any string
           }
         },
         required: false
       },
       'prop_print': {
         type: Object,
-        default: function() {
+        default: function () {
           return {
             print_all: false,
             fold: true,
             print_test: false,
             dialog: false,
-            reverse_image: "",
+            reverse_image: ''
           }
         },
         required: false
       },
       'prop_game_info': {
         type: Object,
-        default: function() {
+        default: function () {
           return {
           }
         },
@@ -201,27 +201,27 @@
       },
       trait () {
         let traits = this.game_info.optional_traits
-        if(Math.random() < this.game_settings.chance_trait/100) {
-          return traits[Math.floor(Math.random()*traits.length)];
+        if (Math.random() < this.game_settings.chance_trait / 100) {
+          return traits[Math.floor(Math.random() * traits.length)]
         } else {
-          return ""
+          return ''
         }
       }
     },
     filters: {
-      indefinite: function(value) {
+      indefinite: function (value) {
         return a(value)
       }
     },
     mounted () {
-      this.$electron.ipcRenderer.on('receipt-data', function (event,data) {
+      this.$electron.ipcRenderer.on('receipt-data', function (event, data) {
         console.log(data)
         console.log(this)
         this.data_game_settings = data.game_settings
         this.data_card = data.card
         this.data_print = data.print
         this.data_game_info = data.game_info
-      }.bind(this));
+      }.bind(this))
     }
   }
 </script>
