@@ -450,6 +450,7 @@
         // Loop over each card and find the number of that type
         for (var i = this.card_info.length - 1; i >= 0; i--) {
           let num_of_type = this.card_info[i].calculate_cards(num_players, optional_cards)
+          if (num_of_type < 1) {continue}
           selections_unshuffled = selections_unshuffled.concat(Array(num_of_type).fill(i))
         }
         

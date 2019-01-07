@@ -14,15 +14,24 @@ function werewolfcalc(players,optional_cards=[]) {
   // is based loosely on a poll from BoardGameGeek.
   // 
   // https://boardgamegeek.com/thread/538785/poll-how-many-wolves-basic-game
-  
+    
+  // Count optional cards on our team
+  let optional_cards_onteam = 0
+  for (var i = optional_cards.length - 1; i >= 0; i--) {
+    if (optional_cards[i].team == "W") { // Only consider cards on our team
+      console.log("Using optional card:")
+      optional_cards_onteam += optional_cards[i].calculate_cards(players,optional_cards)
+    }
+  }
+
   if (players < 13) {
-    return 2
+    return 2 - optional_cards_onteam
   }
   if (players < 18) {
-    return 3
+    return 3 - optional_cards_onteam
   }
   if (players < 22) {
-    return 4
+    return 4 - optional_cards_onteam
   }
 
   // Beyond here is not indicated by the poll, and so we will make 1/6th of players
@@ -31,7 +40,7 @@ function werewolfcalc(players,optional_cards=[]) {
   // Realistically, at this point you might typically consider breaking the game off
   // into villages.
   
-  return Math.ceil(players/6)
+  return Math.ceil(players/6) - optional_cards_onteam
   
 }
 
@@ -43,18 +52,14 @@ function villagercalc(players,optional_cards=[]) {
   // it also takes in the "optional" cards - this is used in the calculation where
   // optional cards replace this one.
   
-  // Count optional cards on our team
-  let optional_cards_onteam = 0
+  // Count optional cards
+  let optional_cards_count = 0
   for (var i = optional_cards.length - 1; i >= 0; i--) {
-    if (optional_cards[i].team == "V") {
-      console.log("Using optional card:")
-      optional_cards[i]
-      optional_cards_onteam++
-    }
+    optional_cards_count += optional_cards[i].calculate_cards(players,optional_cards)
   }
   
-  // Number of villagers = players - werewolves - optional_cards_onteam
-  return players - werewolfcalc(players,optional_cards) - optional_cards_onteam
+  // Number of villagers = players - werewolves - optional_cards_count
+  return players - werewolfcalc(players,optional_cards) - optional_cards_count
 }
 
 exports.card_info = [
@@ -73,7 +78,7 @@ exports.card_info = [
     help_text: "Act as a normal werewolf. You must say 'Werewolf' once per day.",
     win_condition: "You win when werewolves outnumber villagers.",
     symbol: "T W",
-    calculate_cards: werewolfcalc,
+    calculate_cards: (players,optional_cards=[]) => {return 1},
     optional: false,
     enabled: true,
     team: "W" // Denotes which "team" they are on for calculations. Can be any string
