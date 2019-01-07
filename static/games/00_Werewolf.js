@@ -79,8 +79,8 @@ exports.card_info = [
     win_condition: "You win when werewolves outnumber villagers.",
     symbol: "T W",
     calculate_cards: (players,optional_cards=[]) => {return 1},
-    optional: false,
-    enabled: true,
+    optional: true,
+    enabled: false,
     team: "W" // Denotes which "team" they are on for calculations. Can be any string
   },
   {
