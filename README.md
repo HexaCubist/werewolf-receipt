@@ -1,8 +1,6 @@
 # werewolf-receipt
 
-> An instant print-and-play variation of Werewolf using a receipt printer
-
-Werewolf Receipt is a quick tool for Windows (more platforms coming soon) which allows anyone with a receipt printer to automatically randomly generate, assign, and print the cards to the popular party game Werewolf. A number of optional cards and rules are included.
+Werewolf Receipt is a tool for Windows (more platforms coming soon) which allows anyone with a receipt printer to automatically randomly generate, assign, and print the cards to the popular party game Werewolf. A number of optional cards and rules are included.
 
 
 [![Demo of Werewolf Receipt](docs/demo.gif)](https://streamable.com/wmi8c)
@@ -19,11 +17,11 @@ The initial reason this tool was created is that it helped me justify owning a r
 
 Beyond that, I wanted an easy way to generate the cards for Werewolf in situations where I don't trust people to give back cards or where I can't borrow a copy of the game.
 
-As well as this, we use the fact that the cards are printed on the spot means that we can add things to the game that otherwise wouldn't be possible. Right now that includes a list of traits that may appear on your card, which helps spice up the game. Any trait can go with any card, and the chance of one appearing can be configured.
+As well as this, the fact that the cards are printed on the spot means that we can add things to the game that otherwise wouldn't be possible. Right now that includes a list of traits that may appear on your card, which helps spice up the game. Any trait can go with any card, and the chance of one appearing can be configured.
 
 All up, a _cheap_ reciept printer from your friendly local international internet shopping website costs around $15-20 NZD including shipping (or $10-15 USD). A decent roll of thermal paper costs a dollar or two. A standard copy of Werewolf costs around $30 imported in NZ ($40 locally) or $12USD in the USA. Thus, on price alone it is usually cheaper to buy a reciept printer and download this app than buy a traditional copy of Werewolf.
 
-Finally, having the app and therefore game open sourced means anyone can come in and tweak card ratios, traits, and add & edit cards. These tweaks can then be sent out to anyone using the app and in doing so allow for an "over the air" update of a physical card game without the need to actually buy anything.
+Finally, having the app (and therefore game) open sourced means anyone can come in and tweak card ratios, traits, and add & edit cards. These tweaks can then be sent out to anyone using the app and in doing so allow for an "over the air" update of a physical card game without the need to actually buy anything.
 
 ### But you could just use a pack of cards...
 
