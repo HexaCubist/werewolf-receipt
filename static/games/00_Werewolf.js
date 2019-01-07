@@ -74,16 +74,6 @@ exports.card_info = [
     team: "W" // Denotes which "team" they are on for calculations. Can be any string
   },
   {
-    name: "Teenage Werewolf",
-    help_text: "Act as a normal werewolf. You must say 'Werewolf' once per day.",
-    win_condition: "You win when werewolves outnumber villagers.",
-    symbol: "T W",
-    calculate_cards: (players,optional_cards=[]) => {return 1},
-    optional: true,
-    enabled: false,
-    team: "W" // Denotes which "team" they are on for calculations. Can be any string
-  },
-  {
     name: "Villager",
     help_text: "Find and vote out all werewolves.",
     win_condition: "You win when no werewolves remain.",
@@ -112,6 +102,16 @@ exports.card_info = [
     optional: true,
     enabled: true,
     team: "V" // Denotes which "team" they are on for calculations. Can be any string
+  },
+  {
+    name: "Teenage Werewolf",
+    help_text: "Act as a normal werewolf. You must say 'Werewolf' once per day.",
+    win_condition: "You win when werewolves outnumber villagers.",
+    symbol: "T W",
+    calculate_cards: (players,optional_cards=[]) => {return 1},
+    optional: true,
+    enabled: false,
+    team: "W" // Denotes which "team" they are on for calculations. Can be any string
   },
   {
     name: "Witness",
