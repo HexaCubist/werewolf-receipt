@@ -37,8 +37,8 @@
           </p>
           <div class="field player-select">
             <div class="control is-clearfix">
-              <input class="slider is-fullwidth" step="1" :min="gameInfo.min_players" :max="gameInfo.max_players" type="range" v-model="gameSettings.players">
-              <input type="number" :min="gameInfo.min_players" :max="gameInfo.max_players" class="input" v-model="gameSettings.players">
+              <input class="slider is-fullwidth" step="1" :min="gameInfo.minPlayers" :max="gameInfo.maxPlayers" type="range" v-model="gameSettings.players">
+              <input type="number" :min="gameInfo.minPlayers" :max="gameInfo.maxPlayers" class="input" v-model="gameSettings.players">
             </div>
           </div>
         </div>

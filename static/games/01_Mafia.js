@@ -19,7 +19,6 @@ function mafiacalc (players, optionalCards = []) {
   let optionalCardsOnTeam = 0
   for (var i = optionalCards.length - 1; i >= 0; i--) {
     if (optionalCards[i].team === 'W') { // Only consider cards on our team
-      console.log('Using optional card:')
       optionalCardsOnTeam += optionalCards[i].calculate_cards(players, optionalCards)
     }
   }
