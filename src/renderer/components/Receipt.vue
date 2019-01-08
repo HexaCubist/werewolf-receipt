@@ -2,8 +2,8 @@
     <div class="receipt" style="width: 56mm;height:auto">
       <div v-if="print.fold">
       <div class="underside">
-        <h2 class="is-size-2 has-text-weight-bold">{{game_info.name}}</h2>
-        <p>A Game of social Deduction and subterfuge for {{game_settings.players}} players</p>
+        <h2 class="is-size-2 has-text-weight-bold">{{gameInfo.name}}</h2>
+        <p>A Game of social Deduction and subterfuge for {{gameSettings.players}} players</p>
         <img :src="print.reverse_image" style="height: 2.5cm">
       </div>
       <div class="centerline">
@@ -125,14 +125,14 @@
   // var ipcRenderer = require('electron').ipcRenderer
   // ipcRenderer.on('receipt-data', function (event,data) {
   //     console.log(data)
-  //     data_load = data
+  //     dataLoad = data
   // });
 
   var a = require('indefinite')
 
 export default {
     props: {
-      'prop_game_settings': {
+      'propGameSettings': {
         type: Object,
         default: function () {
           return {
@@ -140,7 +140,7 @@ export default {
         },
         required: false
       },
-      'prop_card': {
+      'propCard': {
         type: Object,
         default: function () {
           return {
@@ -156,7 +156,7 @@ export default {
         },
         required: false
       },
-      'prop_print': {
+      'propPrint': {
         type: Object,
         default: function () {
           return {
@@ -169,7 +169,7 @@ export default {
         },
         required: false
       },
-      'prop_game_info': {
+      'propGameInfo': {
         type: Object,
         default: function () {
           return {
@@ -180,28 +180,28 @@ export default {
     },
     data () {
       return {
-        data_game_settings: null,
-        data_card: null,
-        data_print: null,
-        data_game_info: null
+        dataGameSettings: null,
+        dataCard: null,
+        dataPrint: null,
+        dataGameInfo: null
       }
     },
     computed: { // Default to properties but use data if given
-      game_settings () {
-        return this.data_game_settings ? this.data_game_settings : this.prop_game_settings
+      gameSettings () {
+        return this.dataGameSettings ? this.dataGameSettings : this.propGameSettings
       },
       card () {
-        return this.data_card ? this.data_card : this.prop_card
+        return this.dataCard ? this.dataCard : this.propCard
       },
       print () {
-        return this.data_print ? this.data_print : this.prop_print
+        return this.dataPrint ? this.dataPrint : this.propPrint
       },
-      game_info () {
-        return this.data_game_info ? this.data_game_info : this.prop_game_info
+      gameInfo () {
+        return this.dataGameInfo ? this.dataGameInfo : this.propGameInfo
       },
       trait () {
-        let traits = this.game_info.optional_traits
-        if (Math.random() < this.game_settings.chance_trait / 100) {
+        let traits = this.gameInfo.optionalTraits
+        if (Math.random() < this.gameSettings.chanceTrait / 100) {
           return traits[Math.floor(Math.random() * traits.length)]
         } else {
           return ''
@@ -217,10 +217,10 @@ export default {
       this.$electron.ipcRenderer.on('receipt-data', function (event, data) {
         console.log(data)
         console.log(this)
-        this.data_game_settings = data.game_settings
-        this.data_card = data.card
-        this.data_print = data.print
-        this.data_game_info = data.game_info
+        this.dataGameSettings = data.gameSettings
+        this.dataCard = data.card
+        this.dataPrint = data.print
+        this.dataGameInfo = data.gameInfo
       }.bind(this))
     }
   }

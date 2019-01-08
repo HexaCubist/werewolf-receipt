@@ -116,8 +116,8 @@
               <div class="field player-select">
                 <label class="label">Chance for random "trait"</label>
                 <div class="control is-clearfix">
-                  <input class="slider is-fullwidth" step="1" min="0" max="100" type="range" v-model="gameSettings.chance_trait">
-                  <input type="number" min="0" max="100" class="input" v-model="gameSettings.chance_trait">
+                  <input class="slider is-fullwidth" step="1" min="0" max="100" type="range" v-model="gameSettings.chanceTrait">
+                  <input type="number" min="0" max="100" class="input" v-model="gameSettings.chanceTrait">
                 </div>
               </div>
             </div>
@@ -176,13 +176,13 @@
         </div>
         <div class="receiptlist">
           <receipt
-          v-for="(item,index) in cardInfo_enabled"
+          v-for="(item,index) in cardInfoEnabled"
           :key="`receipt-card-${index}`"
-          v-bind:prop_gameSettings="gameSettings"
-          v-bind:prop_card="getcard(cardInfo_enabled,index)"
-          v-bind:prop_print="print"
-          v-bind:prop_gameInfo="gameInfo"
-          @click.native="printcard(index,gameSettings.players,printReal=false,cardInfo=cardInfo_enabled)"
+          v-bind:propGameSettings="gameSettings"
+          v-bind:propCard="getcard(cardInfoEnabled,index)"
+          v-bind:propPrint="print"
+          v-bind:propGameInfo="gameInfo"
+          @click.native="printcard(index,gameSettings.players,printReal=false,cardInfo=cardInfoEnabled)"
           title="Click to print.."
           ></receipt>
         </div>
@@ -266,7 +266,7 @@ const modalPath = process.env.NODE_ENV === 'development'
         gameSettings: {
           gameInd: settings.get('gameInd'),
           players: 7,
-          chance_trait: 10
+          chanceTrait: 10
         },
         printers: contents.getPrinters(),
         printer: getDefaultPrinter(),
@@ -423,7 +423,7 @@ const modalPath = process.env.NODE_ENV === 'development'
       cardInfo: function () {
         return this.games[this.gameSettings.gameInd].cardInfo
       },
-      cardInfo_enabled: function () {
+      cardInfoEnabled: function () {
         return this.cardInfo.filter((card) => { return card.enabled })
       },
       gameInfo: function () {
