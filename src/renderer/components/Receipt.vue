@@ -45,7 +45,12 @@
   .symbol {
     font-family: 'Fredericka the Great';
     font-size: 2cm;
-    /*filter: grayscale() brightness(0.8) contrast(4);*/
+  }
+
+  @media screen {
+    .symbol {
+      filter: grayscale() brightness(1) contrast(2);
+    }
   }
 
   .receipt hr {
