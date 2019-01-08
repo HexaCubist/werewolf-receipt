@@ -90,10 +90,10 @@
                 {{item.name}} ({{cards_in_play(index)}})
               </label>
               <h3 class="is-size-3">Print Settings</h3>
-              <label class="checkbox">
+              <!-- <label class="checkbox">
                 <input type="checkbox" v-model="print.printAll">
                 Print all at once (prints on default paper)
-              </label>
+              </label> -->
               <label class="checkbox">
                 <input type="checkbox" v-model="print.fold">
                 Create foldable cards
