@@ -43,7 +43,7 @@ function mafiacalc (players, optionalCards = []) {
   return Math.ceil(players / 6) - optionalCardsOnTeam
 }
 
-function villagercalc (players, optionalCards = []) {
+function innocentcalc (players, optionalCards = []) {
   // This function manages how many of this type of card is in the game at a time.
   // It accepts the number of players (total) as an integer, and outputs the number
   // of cards that will be of this type.
@@ -77,7 +77,7 @@ exports.cardInfo = [
     help_text: 'Find and vote out all of The Mafia.',
     win_condition: 'You win when all of The Mafia is arrested.',
     symbol: 'I',
-    calculate_cards: villagercalc,
+    calculate_cards: innocentcalc,
     optional: false,
     enabled: true,
     team: 'I' // Denotes which "team" they are on for calculations. Can be any string
