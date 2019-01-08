@@ -11,7 +11,7 @@
       </div>
       </div>
       <div class="overside">
-        <h3 class="has-text-weight-bold">You are {{card.name | indefinite}}</h3>
+        <h3 class="has-text-weight-bold">You are <span v-if="card.useIndefinite">{{card.name | indefinite}}</span><span v-else>{{card.name}}</span></h3>
         <p class="symbol">{{card.symbol}}</p>
         <p>{{card.help_text}} {{card.win_condition}}</p>
         <div class="trait" v-if="trait">

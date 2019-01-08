@@ -70,6 +70,7 @@ exports.cardInfo = [
     calculate_cards: werewolfcalc,
     optional: false,
     enabled: true,
+    useIndefinite: true,
     team: 'W' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -80,6 +81,7 @@ exports.cardInfo = [
     calculate_cards: villagercalc,
     optional: false,
     enabled: true,
+    useIndefinite: true,
     team: 'V' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -90,6 +92,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 1 },
     optional: true,
     enabled: true,
+    useIndefinite: true,
     team: 'V' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -100,6 +103,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 1 },
     optional: true,
     enabled: true,
+    useIndefinite: true,
     team: 'V' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -110,6 +114,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 1 },
     optional: true,
     enabled: false,
+    useIndefinite: true,
     team: 'W' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -120,6 +125,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 1 },
     optional: true,
     enabled: false,
+    useIndefinite: true,
     team: 'V' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -130,6 +136,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 1 },
     optional: true,
     enabled: false,
+    useIndefinite: true,
     team: 'V' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -140,6 +147,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 1 },
     optional: true,
     enabled: false,
+    useIndefinite: true,
     team: 'V' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -150,6 +158,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 1 },
     optional: true,
     enabled: false,
+    useIndefinite: true,
     team: 'W' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -160,6 +169,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 1 },
     optional: true,
     enabled: false,
+    useIndefinite: true,
     team: 'V' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -170,6 +180,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 1 },
     optional: true,
     enabled: false,
+    useIndefinite: true,
     team: 'W' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -180,6 +191,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 1 },
     optional: true,
     enabled: false,
+    useIndefinite: true,
     team: 'V' // Denotes which "team" they are on for calculations. Can be any string
   },
   {
@@ -190,6 +202,7 @@ exports.cardInfo = [
     calculate_cards: (players, optionalCards = []) => { return 2 },
     optional: true,
     enabled: false,
+    useIndefinite: true,
     team: 'V' // Denotes which "team" they are on for calculations. Can be any string
   }
 ]
