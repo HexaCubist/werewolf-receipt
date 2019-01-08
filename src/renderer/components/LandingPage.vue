@@ -6,9 +6,9 @@
           <div slot="face" class="edit" title="Click to switch games...">{{gameInfo.name}}</div>
             <div slot="content">
                 <ul>
-                    <li v-for="(game, index) in games" :key="'game-' + index"><a @click="set_gameInd(index)">
+                    <a v-for="(game, index) in games" :key="'game-' + index" @click="set_gameInd(index)"><li>
                       {{game.gameInfo.name}}
-                    </a></li>
+                    </li></a>
                 </ul>
             </div>
         </popover>
@@ -621,9 +621,24 @@ const modalPath = process.env.NODE_ENV === 'development'
     position: absolute;
     background: white;
     font-size: 25px;
-    width: 100%;
+    font-weight: normal;
+    width: 140%;
+    left: -20%;
     padding: 15px 5px;
     border-radius: 3px;
+  }
+
+  .intro #popover-example a:hover {
+    color: #263238;
+    left: 10px;
+  }
+
+  .intro #popover-example a {
+    color: black;
+    background: #fff;
+    position: relative;
+    left: 0px;
+    transition: 0.25s ease left, 0.25s ease background;
   }
 
   label,.button {
