@@ -1,6 +1,6 @@
 {
   "name": "werewolf-receipt",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "HexaCubist",
   "description": "An instant print-and-play variation of Werewolf using a receipt printer",
   "license": null,
