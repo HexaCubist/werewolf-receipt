@@ -1,22 +1,22 @@
 # werewolf-receipt
 [![Build Status](https://travis-ci.com/HexaCubist/werewolf-receipt.svg?branch=master)](https://travis-ci.com/HexaCubist/werewolf-receipt)
 
-Werewolf Receipt is a tool for Windows (more platforms coming soon) which allows anyone with a receipt printer to automatically randomly generate, assign, and print the cards to the popular party game Werewolf. A number of optional cards and rules are included.
+Werewolf Receipt is a tool for Windows (Mac and Linux in alpha) which allows anyone with a receipt printer to automatically randomly generate, assign, and print the cards to the popular party games Werewolf, Mafia, and Avalon. A number of optional cards and rules are included.
 
 
 [![Demo of Werewolf Receipt](docs/demo.gif)](https://streamable.com/wmi8c)
 
 ## Setup
 
-If you use Windows, head over to the [Releases Page](https://github.com/HexaCubist/werewolf-receipt/releases) and grab the latest installer or zip file.
+If you use Windows, head over to the [Releases Page](https://github.com/HexaCubist/werewolf-receipt/releases) and grab the latest installer. If you use Mac or Linux, you can try the files there as well (although they will be unsigned and are untested). At this point, Mac and Linux support is in alpha and is largely untested. Please get in touch with your experiences or issues.
 
-If you use another platform, feel free to contribute whatever is needed to get it running on that. Most of the time, following the build steps below is a good place to start.
+If you need a receipt printer, you can find cheap off-brand ones for _much_ less than most board games. Most ones available at the moment will use USB and once installed act as a standard printer.
 
 ## Why?
 
 The initial reason this tool was created is that it helped me justify owning a receipt printer.
 
-Beyond that, I wanted an easy way to generate the cards for Werewolf in situations where I don't trust people to give back cards or where I can't borrow a copy of the game.
+Beyond that, I wanted an easy way to generate the cards for Werewolf and other games in situations where I don't trust people to give back cards or where I can't borrow a copy of the game.
 
 As well as this, the fact that the cards are printed on the spot means that we can add things to the game that otherwise wouldn't be possible. Right now that includes a list of traits that may appear on your card, which helps spice up the game. Any trait can go with any card, and the chance of one appearing can be configured.
 
