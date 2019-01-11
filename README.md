@@ -1,8 +1,15 @@
 # werewolf-receipt
 [![Build Status](https://travis-ci.com/HexaCubist/werewolf-receipt.svg?branch=master)](https://travis-ci.com/HexaCubist/werewolf-receipt)
 
-Werewolf Receipt is a tool for Windows (Mac and Linux in alpha) which allows anyone with a receipt printer to automatically randomly generate, assign, and print the cards to the popular party games Werewolf, Mafia, and Avalon. A number of optional cards and rules are included.
+Hi there! This is a project I’ve been working on for the past week or so, and while I made it mostly for myself I’m excited to share it with you in case it helps someone else too.
 
+I often end up helping out at or running a number of after school activities and events. One thing that’s always a winner is playing board and card games. The issue doing this is that it can be hard to keep track of the cards after a day, and kids often have trouble learning the rules. I made this tool to help with that.
+
+The goal of werewolf receipt is to make it super quick and easy to print a card game on the spot – in a way which means that lost cards can be replaced, and worn cards can be reprinted. It also acts as a way for people to potentially try out new games before they buy them, and share variations or alterations on the original ruleset (such as new cards).
+
+There are links to download below for Windows. Mac and Linux builds have also been made but not tested. If you’d like to try it for yourself but don’t have a receipt printer, consider picking one up as they are not expensive ($10-15) and use no ink. You could also probably use a traditional printer if you wished with a small paper size.
+
+If you have ideas or issues with the project, feel free to get in touch. If you have any sort of technical background you can also contribute more games or features here. New games are automatically loaded from /static/games (the JS files within are numbered and documented).
 
 [![Demo of Werewolf Receipt](docs/demo.gif)](https://streamable.com/wmi8c)
 
