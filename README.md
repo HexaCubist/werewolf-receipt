@@ -1,6 +1,8 @@
 # werewolf-receipt
 [![Build Status](https://travis-ci.com/HexaCubist/werewolf-receipt.svg?branch=master)](https://travis-ci.com/HexaCubist/werewolf-receipt)
 
+Werewolf Receipt is a tool for Windows (more platforms coming soon) which allows anyone with a receipt printer to automatically randomly generate, assign, and print the cards to the popular party game Werewolf. A number of optional cards and rules are included.
+
 This is a project I’ve been working on for the past week or so, and while I made it mostly for myself I’m excited to share it with you in case it helps someone else too.
 
 I often end up helping out at or running a number of after school activities and events. One thing that’s always a winner is playing board and card games. The issue doing this is that it can be hard to keep track of the cards after a day, and kids often have trouble learning the rules. I made this tool to help with that.
